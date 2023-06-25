@@ -42,11 +42,11 @@ const createWorker = (index, data) => {
       resolve({ status: "resolved", data: result, index: index });
     });
     worker.on("error", () => {
-      reject({ status: "error", data: null, index: index });
+      resolve({ status: "error", data: null, index: index });
     });
     worker.on("exit", (code) => {
       if (code !== 0) {
-        reject({ status: "error", data: null, index: index });
+        resolve({ status: "error", data: null, index: index });
       }
     });
   });
